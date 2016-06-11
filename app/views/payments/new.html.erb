@@ -1,11 +1,11 @@
 <!-- Validation failure messages -->
 <% if @payment.errors.any? %>
-  <% @payment.errors.full_messages.each do |message| %>
-    <div class="alert alert-dismissable alert-danger">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      <%= message %>
-    </div>
-  <% end %>
+<% @payment.errors.full_messages.each do |message| %>
+<div class="alert alert-dismissable alert-danger">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <%= message %>
+</div>
+<% end %>
 <% end %>
 
 <div class="page-header">
@@ -24,7 +24,7 @@
           Payee
         </label>
 
-        <input type="text" id="payee_id" name="payee_id" placeholder="Payee" class="form-control" value="<%= @payment.payee_id %>">
+        <%= select_tag(:payee_id, options_from_collection_for_select(User.all, :id, :email, @payment.payee_id), class: "form-control") %>
       </div>
 
       <!-- Label and input for amount -->
@@ -42,7 +42,7 @@
           Payer
         </label>
 
-        <input type="text" id="payer_id" name="payer_id" placeholder="Payer" class="form-control" value="<%= @payment.payer_id %>">
+        <%= select_tag(:payer_id, options_from_collection_for_select(User.all, :id, :email, @payment.payer_id), class: "form-control") %>
       </div>
 
       <button class="btn btn-success">

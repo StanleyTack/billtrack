@@ -33,7 +33,7 @@
           Payer
         </label>
 
-        <input type="text" id="payer_id" name="payer_id" placeholder="Payer" class="form-control" value="<%= @bill.payer_id %>">
+        <%= select_tag(:payer_id, options_from_collection_for_select(User.all, :id, :email, @bill.payer_id), class: "form-control") %>
       </div>
 
       <!-- Label and input for description -->
@@ -51,7 +51,7 @@
           Beneficiary
         </label>
 
-        <input type="text" id="beneficiary_id" name="beneficiary_id" placeholder="Beneficiary" class="form-control" value="<%= @bill.beneficiary_id %>">
+        <%= select_tag(:beneficiary_id,  options_from_collection_for_select(User.all, :id, :email, @bill.beneficiary_id), class: "form-control") %>
       </div>
 
       <button class="btn btn-warning">

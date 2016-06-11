@@ -1,6 +1,6 @@
 <div class="page-header">
   <h1>
-    Balances
+    My Bills
     <a href="/bills/new" class="btn btn-lg btn-success">New Bill</a>
   </h1>
 </div>
@@ -19,13 +19,12 @@
       <% @balances.each do |balance| %>
       <tr>
         <td><%= balance.amount %></td>
-        <td><%= balance.payer_id %></td>
+        <td><%= User.find_by(id: balance.payer_id).email%></td>
         <td><%= balance.description %></td>
-        <td><%= balance.beneficiary_id %></td>
+        <td><%= User.find_by(id: balance.beneficiary_id).email %></td>
         <td>
-          <a href="/balances/<%= balance.id %>" class="btn btn-primary">Show</a>
-          <a href="/balances/<%= balance.id %>/edit" class="btn btn-warning">Edit</a>
-          <a href="/delete_balance/<%= balance.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+          <a href="/bills/<%= balance.id %>/edit" class="btn btn-warning">Edit</a>
+          <a href="/delete_bill/<%= balance.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
         </td>
       </tr>
       <% end %>

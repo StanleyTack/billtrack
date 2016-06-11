@@ -1,7 +1,8 @@
 class BalancesController < ApplicationController
   def index
-    bills = Bill.where()
-    @balances = Bill.all
+    relevant_bills = Bill.where("payer_id = ? OR beneficiary_id = ?", current_user.id, current_user.id)
+
+    @balances = relevant_bills
   end
 
   # def show

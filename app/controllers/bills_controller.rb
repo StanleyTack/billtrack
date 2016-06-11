@@ -19,7 +19,7 @@ class BillsController < ApplicationController
     @bill.beneficiary_id = params[:beneficiary_id]
 
     if @bill.save
-      redirect_to "/bills", :notice => "Bill created successfully."
+      redirect_to "/", :notice => "Bill created successfully."
     else
       render 'new'
     end
@@ -38,7 +38,7 @@ class BillsController < ApplicationController
     @bill.beneficiary_id = params[:beneficiary_id]
 
     if @bill.save
-      redirect_to "/bills", :notice => "Bill updated successfully."
+      redirect_to "/", :notice => "Bill updated successfully."
     else
       render 'edit'
     end
@@ -49,6 +49,6 @@ class BillsController < ApplicationController
 
     @bill.destroy
 
-    redirect_to "/bills", :notice => "Bill deleted."
+    redirect_to "/", :notice => "Bill deleted."
   end
 end
