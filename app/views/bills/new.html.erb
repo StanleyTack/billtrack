@@ -1,0 +1,64 @@
+<!-- Validation failure messages -->
+<% if @bill.errors.any? %>
+  <% @bill.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Add Bill</h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/create_bill" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for amount -->
+      <div class="form-group">
+        <label for="amount" class="control-label">
+          Amount
+        </label>
+
+        <input type="text" id="amount" name="amount" placeholder="Amount" class="form-control" value="<%= @bill.amount %>">
+      </div>
+
+      <!-- Label and input for payer_id -->
+      <div class="form-group">
+        <label for="payer_id" class="control-label">
+          Payer
+        </label>
+
+        <input type="text" id="payer_id" name="payer_id" placeholder="Payer" class="form-control" value="<%= @bill.payer_id %>">
+      </div>
+
+      <!-- Label and input for description -->
+      <div class="form-group">
+        <label for="description" class="control-label">
+          Description
+        </label>
+
+        <textarea id="description" name="description" placeholder="Description" class="form-control" rows="3"><%= @bill.description %></textarea>
+      </div>
+
+      <!-- Label and input for beneficiary_id -->
+      <div class="form-group">
+        <label for="beneficiary_id" class="control-label">
+          Beneficiary
+        </label>
+
+        <input type="text" id="beneficiary_id" name="beneficiary_id" placeholder="Beneficiary" class="form-control" value="<%= @bill.beneficiary_id %>">
+      </div>
+
+      <button class="btn btn-success">
+        Create Bill
+      </button>
+      or
+      <a href="/bills">Cancel</a>
+    </form>
+  </div>
+</div>
